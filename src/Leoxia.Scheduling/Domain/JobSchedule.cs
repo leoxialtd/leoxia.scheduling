@@ -3,12 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Leoxia.Scheduling.Domain;
 
-internal class JobScheduler : IJobScheduler
+internal class JobSchedule : IJobScheduler
 {
     private readonly JobRepository _repository;
     private readonly ScopeInvocableResolver _resolver;
 
-    public JobScheduler(
+    public JobSchedule(
         JobRepository repository,
         IServiceScopeFactory serviceScopeFactory)
     {

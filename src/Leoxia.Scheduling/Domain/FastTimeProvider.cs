@@ -1,4 +1,15 @@
-﻿namespace Leoxia.Scheduling.Domain;
+﻿using Leoxia.Scheduling.Abstractions;
+
+namespace Leoxia.Scheduling.Domain;
+
+public class StandardTimeProvider : ITimeProvider
+{
+    public DateTimeOffset UtcNow()
+    {
+        return DateTimeOffset.UtcNow;
+    }
+}
+
 
 public class FastTimeProvider : IFastTimeProvider
 {
@@ -6,7 +17,7 @@ public class FastTimeProvider : IFastTimeProvider
 
     public FastTimeProvider()
     {
-        _utcNow = DateTime.UtcNow;
+        _utcNow = DateTimeOffset.UtcNow;
     }
 
     public void Set(DateTimeOffset now)

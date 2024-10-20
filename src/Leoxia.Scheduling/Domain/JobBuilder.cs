@@ -11,7 +11,6 @@ internal class JobBuilder : IJobBuilder
     {
         _repository = repository;
         _job = new Job(invocableType, resolver);
-        _repository.Add(_job);
     }
 
     public IJobBuilder WithName(string name)
@@ -59,6 +58,7 @@ internal class JobBuilder : IJobBuilder
 
     public IJob Build()
     {
+        _repository.Add(_job);
         return _job;
     }
 }

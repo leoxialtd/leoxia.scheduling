@@ -4,7 +4,7 @@ namespace Leoxia.Scheduling.Domain;
 
 internal class JobRun
 {
-    private readonly DateTimeOffset? _nextRun;
+    private DateTimeOffset? _nextRun;
 
     public JobRun(Job job, DateTimeOffset now)
     {
@@ -22,4 +22,14 @@ internal class JobRun
     public bool IsRunning { get; set; }
 
     public ConcurrentBag<Task> Runs { get; } = new ConcurrentBag<Task>();
+
+    public override string ToString()
+    {
+        return Job.Name;
+    }
+
+    public void SetNextRun(DateTimeOffset now)
+    {
+        _nextRun = Job.RunScheduler.GetNextRun(_nextRun ?? now);
+    }
 }

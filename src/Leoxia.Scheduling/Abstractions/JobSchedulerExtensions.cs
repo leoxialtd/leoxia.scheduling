@@ -18,18 +18,34 @@ public static class JobSchedulerExtensions
     //    return scheduler.Schedule();
     //}
 
-    public static IJobBuilder EverySeconds(this IJobBuilder scheduler, int seconds = 1)
+    public static IJobBuilder EverySeconds(this IJobBuilder builder, int seconds = 1)
     {
-        return scheduler.Every(TimeSpan.FromSeconds(seconds));
+        return builder.Every(TimeSpan.FromSeconds(seconds));
     }
 
-    public static IJobBuilder Daily(this IJobBuilder scheduler, int days = 1)
+    public static IJobBuilder EveryMinutes(this IJobBuilder builder, int minutes = 1)
     {
-        return scheduler.Every(TimeSpan.FromDays(days));
+        return builder.Every(TimeSpan.FromMinutes(minutes));
     }
 
-    public static IJobBuilder Once(this IJobBuilder scheduler)
+    public static IJobBuilder Hourly(this IJobBuilder builder, int hour = 1)
     {
-        return scheduler.Times(1);
+        return builder.Every(TimeSpan.FromHours(hour));
+    }
+
+
+    public static IJobBuilder Daily(this IJobBuilder builder, int days = 1)
+    {
+        return builder.Every(TimeSpan.FromDays(days));
+    }
+
+    public static IJobBuilder Monthly(this IJobBuilder builder, int months = 1)
+    {
+        return builder.Every(TimeSpan.FromDays(months));
+    }
+
+    public static IJobBuilder Once(this IJobBuilder builder)
+    {
+        return builder.Times(1);
     }
 }

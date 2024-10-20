@@ -4,10 +4,14 @@ namespace Leoxia.Scheduling.Abstractions;
 
 public interface IJobSchedulerConfiguration
 {
-    IJobSchedulerConfiguration WithLoggerFactory(ILogger<IJobScheduler> logger);
+    IJobSchedulerConfiguration WithLoggerFactory(ILoggerFactory loggerFactory);
 
-    IJobSchedulerConfiguration OnException(Action<Exception> onException);
 
+    IJobSchedulerConfiguration OnException(Action<Exception, string> onException);
+
+    IJobSchedulerConfiguration LogExceptions();
+
+    IJobSchedulerConfiguration WithTimerPeriod(TimeSpan period);
 
     /// <summary>
     /// Start the inner timer for scheduling jobs immediately.
@@ -15,5 +19,6 @@ public interface IJobSchedulerConfiguration
     /// Should be set to true when not hosted in ASP.NET Core application.
     /// </summary>
     /// <returns>Instance to stop the scheduler.</returns>
-    IStoppable Starts();
+    Task<IStoppable> Start();
+
 }

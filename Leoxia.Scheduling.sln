@@ -11,13 +11,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 		Directory.Packages.props = Directory.Packages.props
 		LICENSE = LICENSE
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7538A25E-2983-4BC0-825F-B8B1147A6476}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leoxia.Scheduling", "src\Leoxia.Scheduling\Leoxia.Scheduling.csproj", "{EB468CF8-E502-49DA-B52A-D675F7A651EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leoxia.Scheduling", "src\Leoxia.Scheduling\Leoxia.Scheduling.csproj", "{EB468CF8-E502-49DA-B52A-D675F7A651EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leoxia.Scheduling.Tests", "test\Leoxia.Scheduling.Tests\Leoxia.Scheduling.Tests.csproj", "{FBB3D461-6C20-4849-B745-BA5CDC084692}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leoxia.Scheduling.Tests", "test\Leoxia.Scheduling.Tests\Leoxia.Scheduling.Tests.csproj", "{FBB3D461-6C20-4849-B745-BA5CDC084692}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

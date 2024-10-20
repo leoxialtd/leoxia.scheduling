@@ -6,4 +6,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Leoxia.Scheduling.Tests" />
+  </ItemGroup>
+
 </Project>
