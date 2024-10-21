@@ -14,8 +14,27 @@ internal class JobRun
 
     public bool ShouldRun(DateTimeOffset now)
     {
-        return _nextRun != null && now > _nextRun;
+        if (HasReachMaximumExecution)
+        {
+            return false;
+        }
+
+        var shouldRun = _nextRun != null && now > _nextRun;
+        if (shouldRun && Job.MaxRuns != null)
+        {
+            CurrentRun += 1;
+            if (CurrentRun >= Job.MaxRuns.Value)
+            {
+                HasReachMaximumExecution = true;
+            }
+        }
+
+        return shouldRun;
     }
+
+    private bool HasReachMaximumExecution { get; set; }
+
+    private int CurrentRun { get; set; }
 
     public Job Job { get; }
 

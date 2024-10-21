@@ -72,11 +72,7 @@ internal class JobTimer
     {
         _logger.LogInformation("[Scheduling] Timer stopped");
         _running = false;
-        while (_engine.IsRunning)
-        {
-            await Task.Delay(50);
-        }
-
+        await _engine.Stop();
         await _timer.DisposeAsync();
     }
 }

@@ -43,6 +43,7 @@ public class SuccessorScheduleTests : ScheduleTestBase
 
         var now = DateTimeOffset.UtcNow;
         Time.Set(now);
+        var mre = new ManualResetEvent(false);
 
         // WHEN a job is scheduled
         scheduler.Schedule<MyJob>()
@@ -50,19 +51,20 @@ public class SuccessorScheduleTests : ScheduleTestBase
             .Once()
             .ThenRun(_ => {
                 Interlocked.Increment(ref counter);
+                mre.Set();
             })
             .Build();
 
         // AND a tick is raised
-        now += TimeSpan.FromMilliseconds(1001);
-        Time.Set(now);
+        IncreaseTime(TimeSpan.FromMilliseconds(1001));
         Timer.Tick();
 
-        now += TimeSpan.FromMilliseconds(1001);
-        Time.Set(now);
+        IncreaseTime(TimeSpan.FromMilliseconds(1001));
         Timer.Tick();
 
         // THEN task should be invoked
+        var invoked = mre.WaitOne(TimeSpan.FromSeconds(2));
+        Assert.That(invoked, Is.True);
         Assert.That(counter, Is.EqualTo(1));
     }
 }
